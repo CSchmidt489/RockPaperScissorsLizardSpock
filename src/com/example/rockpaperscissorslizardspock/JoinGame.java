@@ -4,6 +4,7 @@ import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import android.widget.SimpleCursorAdapter;
 
 public class JoinGame extends ListActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
-
+        	public final static String GAME = "com.example.rockpaperscissorslizardspock.Game.onCreateLoader";
     // This is the Adapter being used to display the list's data
     SimpleCursorAdapter mAdapter;
 
@@ -33,6 +34,9 @@ public class JoinGame extends ListActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(MainActivity.JOIN_GAME);
 
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
@@ -86,6 +90,14 @@ public class JoinGame extends ListActivity
 
     @Override 
     public void onListItemClick(ListView l, View v, int position, long id) {
-        // Do something when a list item is clicked
+  
     }
+    public void game(View view) {
+	    Intent intent = new Intent(this, Game.class);
+	    //EditText editText = (EditText) findViewById(R.id.edit_message);
+	   // String message = editText.getText().toString();
+	    String message = "Player Name, Game, port";
+	    intent.putExtra(GAME, message);
+	    startActivity(intent);
+	}
 }

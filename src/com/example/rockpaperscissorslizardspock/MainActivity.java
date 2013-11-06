@@ -1,10 +1,14 @@
 package com.example.rockpaperscissorslizardspock;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
+	public final static String JOIN_GAME = "com.example.rockpaperscissorslizardspock.JoinGame.onCreateLoader";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +22,12 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	public void joinGame(View view) {
+	    Intent intent = new Intent(this, JoinGame.class);
+	    //EditText editText = (EditText) findViewById(R.id.edit_message);
+	   // String message = editText.getText().toString();
+	    String message = "Player Name";
+	    intent.putExtra(JOIN_GAME, message);
+	    startActivity(intent);
+	}
 }
